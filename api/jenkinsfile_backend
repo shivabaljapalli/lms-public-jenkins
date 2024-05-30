@@ -7,7 +7,7 @@ pipeline {
     environment {
 
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-     registry = "shivabaljapalli/lms-public-jenkins"
+     registry = "mubeen507/backend-lms"
         registryCredential = 'dockerhub'
        
     }
@@ -17,7 +17,7 @@ pipeline {
         
         stage('Building the docker image') {
             steps {
-                sh 'cd api && docker build -t shivabaljapalli/backend-pipeline.'
+                sh 'cd api && docker build -t shivabaljapalli/backend-lms .'
             }
         }
         stage('Logging into dockerhub account') {
@@ -27,24 +27,24 @@ pipeline {
         }
         stage('pushing the docker image into dockerhub') {
             steps {
-                  sh 'docker push shivabaljapalli/backend-pipeline'
+                  sh 'docker push shivabaljapalli/backend-lms'
             }
         }
         stage('Remove old docker images') {
              steps {
-                 sh 'docker rmi -f shivabaljapalli/backend-pipeline'
+                 sh 'docker rmi -f shivabaljapalli/backend-lms'
             }
         }
          stage('creating database container') {
              steps {
-                 sh 'docker container rm --force lms-pipeline'
-                 sh 'docker run -d -p 5432:5432 --network lmsnetwork -e  POSTGRES_PASSWORD=password --name lms-pipeline postgres'
+                 sh 'docker container rm --force lmsdb'
+                 sh 'docker run -d -p 5432:5432 --network lmsnetwork -e  POSTGRES_PASSWORD=password --name lmsdb postgres'
             }
         }
          stage('Running the docker container') {
             steps {
-                  sh 'docker container rm --force backend-pipeline'
-                  sh 'docker run -d -p 8080:8080 --network lmsnetwork -e DATABASE_URL=postgresql://postgres:password@lmsdb:5432/postgres --name backend-pipeline -e PORT=8080 -e MODE=local  shivabaljapalli/backend-lms1'
+                  sh 'docker container rm --force backend'
+                  sh 'docker run -d -p 8080:8080 --network lmsnetwork -e DATABASE_URL=postgresql://postgres:password@lmsdb:5432/postgres --name backend -e PORT=8080 -e MODE=local  shivabaljapalli/backend-lms'
             }
         }
     }
