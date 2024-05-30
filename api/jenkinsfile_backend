@@ -6,9 +6,9 @@ pipeline {
 
     environment {
 
-    DOCKERHUB_CREDENTIALS = credentials('dockershiva')
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
      registry = "shivabaljapalli/lms-public-jenkins"
-        registryCredential = 'dockershiva'
+        registryCredential = 'dockerhub'
        
     }
 
