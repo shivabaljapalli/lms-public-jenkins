@@ -17,7 +17,7 @@ pipeline {
         
         stage('Building the docker image') {
             steps {
-                sh 'cd api && docker build -t shivabaljapalli/backend-pipeline'
+                sh 'cd api && docker build -t shivabaljapalli/backend-pipeline.'
             }
         }
         stage('Logging into dockerhub account') {
