@@ -3,6 +3,6 @@ stages {
             steps {
                 echo 'CODE QUALITY CHECK'
                 // Below command works in jenkins
-                sh 'cd webapp && sudo docker run --rm -e SONAR_HOST_URL="http://54.188.178.25:9000" -v ".:/usr/src" -e SONAR_TOKEN="sqa_2a18f0fe09e00f26989accf7b255a1623ae93601" sonarsource/sonar-scanner-cli -Dsonar.projectKey=lms'
+                sh 'cd webapp && sudo docker run --rm -e SONAR_HOST_URL="http://http://54.193.129.228:9000" -v ".:/usr/src" -e SONAR_TOKEN="squ_7cca6fc175da2bb9b43e43aeaf7fda77e6c999f2" sonarsource/sonar-scanner-cli -Dsonar.projectKey=lms'
                 echo 'CODE QUALITY COMPLETED'   
             }
