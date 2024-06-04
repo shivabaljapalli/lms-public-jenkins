@@ -9,3 +9,4 @@ stages {
                 echo 'CODE QUALITY COMPLETED'   
             }
         }
+    }
