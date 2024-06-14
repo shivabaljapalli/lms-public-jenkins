@@ -8,7 +8,7 @@ pipeline {
     }
      stage('upload') {
         steps {
-           sh 'zip -r lms-v1.1.zip webapp/dist/*'
+           sh 'zip -r lms-v1.1.zip ~/lms-public-jenkins/webapp/dist/*'
            sh 'pwd'
            sh 'curl -v -u admin:admin --upload-file lms-v1.1.zip http://52.53.230.187:8081/repository/lms-nexus/'
       }
